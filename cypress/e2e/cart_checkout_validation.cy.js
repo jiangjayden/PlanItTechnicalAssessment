@@ -2,52 +2,49 @@ import shopPage from '../pageobjects/ShopPage'
 import cartPage from '../pageobjects/CartPage'
 
 describe('Cart checkout validation', function () {
+let cartItems; // Holds array for items to buy
 
     beforeEach(() => {
-        // cy.setViewportToFullScreen();
+
+        // Load items data in and assign to items variable
+        cy.fixture('items').then((itemsData) => {
+            cartItems = itemsData.items;
+        });
         cy.visit('/')
     })
 
 
     it('Calculates correct totals for cart items', () => {
-        const stuffedFrog = 'Stuffed Frog';
-        const fluffyBunny = 'Fluffy Bunny';
-        const valentineBear = 'Valentine Bear';
-
-        const stuffedFrogPrice = '$10.99'
-        const fluffyBunnyPrice = '$9.99'
-        const valentineBearPrice = '$14.99'
-
-        const stuffedFrogSubTotal = '$21.98'
-        const fluffyBunnySubTotal = '$49.95'
-        const valentineBearSubTotal = '$44.97'
-
-
-
-        const subTotals = [stuffedFrogSubTotal, fluffyBunnySubTotal, valentineBearSubTotal];
 
         shopPage.goToShopPage();
-        shopPage.buyItem(2, stuffedFrog);
-        shopPage.buyItem(5, fluffyBunny);
-        shopPage.buyItem(3, valentineBear);
+
+        // Loop through items array and buy items based off the data passed
+        cartItems.forEach(item => {
+            shopPage.buyItem(item.quantityToBuy, item.name);
+        });
 
         cartPage.goToCartPage();
 
-        // Validate subTotal for each product
-        cartPage.itemSubTotal(stuffedFrog).should('have.text', stuffedFrogSubTotal);
-        cartPage.itemSubTotal(fluffyBunny).should('have.text', fluffyBunnySubTotal);
-        cartPage.itemSubTotal(valentineBear).should('have.text', valentineBearSubTotal);
-
-        // Validate price for each product
-        cartPage.itemPrice(stuffedFrog).should('have.text', stuffedFrogPrice);
-        cartPage.itemPrice(fluffyBunny).should('have.text', fluffyBunnyPrice);
-        cartPage.itemPrice(valentineBear).should('have.text', valentineBearPrice);
-
-        // validate total
-        cartPage.cartTotal().then((actualTotal) => {
-            const expectedTotal = cartPage.calculateCartTotal(subTotals);
-            expect(actualTotal).to.eq(expectedTotal);
+        // Loop through items array and validate subtotal of items based off the data passed
+        cartItems.forEach(item => {
+            const expectedSubtotal = `$${(item.price * item.quantityToBuy)}`;
+            cartPage.itemSubTotal(item.name).should('equal', `${expectedSubtotal}`);
         });
+
+        // Loop through items array and validate price of items based off the data passed
+        cartItems.forEach(item => {
+            const expectedPrice = `$${item.price}`;
+            cartPage.itemPrice(item.name).should('equal', `${expectedPrice}`);
+        });
+
+
+        // Calculate and validate total
+        let expectedTotal = 0;
+        cartItems.forEach(item => {
+            expectedTotal += item.price * item.quantityToBuy;
+        });
+        cartPage.cartTotalText.should('include','Total: ')
+        cartPage.cartTotal.should('equal', `${expectedTotal}`);
     })
 
 })

@@ -4,38 +4,33 @@ class CartPage {
         cy.get('#nav-cart > a').click();
     }
 
-    cartTotal() {
-        return cy.get('.total')              // Get the total element
-            .invoke('text')                    // Extract its text
-            .then((totalText) => {
-                return totalText.replace('Total: ', '').trim();  // Remove 'Total: ' and return the numeric value
+    // Find cart total element and return text
+    get cartTotalText(){
+        return cy.get('.total').invoke('text'); // Get the text from the element
+    }
+
+    // Find cart total element and return the value only
+    get cartTotal() {
+        return this.cartTotalText.then((totalText) => {
+                return totalText.replace('Total: ', '');  // Remove 'Total: '
             });
     }
 
+    // Find itemSubTotal based off item name
     itemSubTotal(itemName) {
         return cy.contains(itemName)
             .parents('tr')
             .find('td')
-            .eq(3)
+            .eq(3).invoke('text')// index 3 is the subTotal column
     }
 
+    // Find itemPrice based off item name
     itemPrice(itemName) {
         return cy.contains(itemName)
             .parents('tr')
             .find('td')
-            .eq(1)
+            .eq(1).invoke('text')  // index 1 is the subTotal column
     }
-
-    calculateCartTotal(subTotals) {
-        let total = 0;
-        for (let i = 0; i < subTotals.length; i++) {
-            total += parseFloat(subTotals[i].replace('$', ''));
-        }
-
-        return total.toFixed(1);
-    }
-
-
 }
 
 module.exports = new CartPage();

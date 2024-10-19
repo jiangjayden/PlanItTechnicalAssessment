@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "name": "Stuffed Frog",
+      "price": 10.99,
+      "quantityToBuy": 2
+    },
+    {
+      "name": "Fluffy Bunny",
+      "price": 9.99,
+      "quantityToBuy": 5
+    },
+    { "name": "Valentine Bear",
+      "price": 14.99,
+      "quantityToBuy": 3
+    }
+  ]
+}

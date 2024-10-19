@@ -16,8 +16,11 @@ class ShopPage {
         return cy.get('#product-7 > div > p > .btn');
     }
 
-    buyItem(amount, itemName) {
+    // Clicks on buy button for the given item and the amount to purchase
+    buyItem(quantityToBuy, itemName) {
         let item = null;
+
+        // Determine what item to buy from given itemName
         switch (itemName.toLowerCase().replace(/\s+/g, '')) {
             case 'stuffedfrog':
                 item = this.StuffedFrogBuy;
@@ -34,7 +37,7 @@ class ShopPage {
         }
 
         try {
-            for (let i = 0; i < amount; i++) {
+            for (let i = 0; i < quantityToBuy; i++) {
                 item.click();
             }
         } catch (e) {
