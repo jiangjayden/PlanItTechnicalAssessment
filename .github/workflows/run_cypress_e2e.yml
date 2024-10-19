@@ -1,4 +1,4 @@
-name: End-to-end tests
+name: Cypress end-to-end tests
 run-name: End-to-end tests - running on ${{ github.event.inputs.browser || 'chrome' }}
 
 on: 
