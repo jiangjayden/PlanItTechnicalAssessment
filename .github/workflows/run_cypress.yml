@@ -17,7 +17,7 @@ on:
           
 jobs:
   cypress-run:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -35,3 +35,11 @@ jobs:
         with:
           name: cypress-screenshots-${{ github.event.inputs.browser }}
           path: cypress/screenshots
+          if-no-files-found: ignore 
+
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cypress-videos-${{ github.event.inputs.browser }}
+          path: cypress/videos
+          if-no-files-found: ignore
