@@ -27,10 +27,9 @@ let cartItems; // Holds array for items to buy
 
         // Loop through items array and validate subtotal of items based off the data passed
         cartItems.forEach(item => {
-            const expectedSubtotal = `$${(item.price * item.quantityToBuy)}`;
-            cartPage.itemSubTotal(item.name).should('equal', `${expectedSubtotal}`);
+            const expectedSubtotal = cartPage.subTotal(item.price, item.quantityToBuy);
+            cartPage.itemSubTotal(item.name).should('equal', `$${expectedSubtotal}`);
         });
-
         // Loop through items array and validate price of items based off the data passed
         cartItems.forEach(item => {
             const expectedPrice = `$${item.price}`;
@@ -41,7 +40,7 @@ let cartItems; // Holds array for items to buy
         // Calculate and validate total
         let expectedTotal = 0;
         cartItems.forEach(item => {
-            expectedTotal += item.price * item.quantityToBuy;
+            expectedTotal += cartPage.subTotal(item.price,item.quantityToBuy)
         });
         cartPage.cartTotalText.should('include','Total: ')
         cartPage.cartTotal.should('equal', `${expectedTotal}`);

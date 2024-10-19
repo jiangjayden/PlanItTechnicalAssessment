@@ -3,7 +3,6 @@ class CartPage {
     goToCartPage() {
         cy.get('#nav-cart > a').click();
     }
-
     // Find cart total element and return text
     get cartTotalText(){
         return cy.get('.total').invoke('text'); // Get the text from the element
@@ -30,6 +29,10 @@ class CartPage {
             .parents('tr')
             .find('td')
             .eq(1).invoke('text')  // index 1 is the subTotal column
+    }
+
+    subTotal(price, quantity) {
+        return price * quantity;
     }
 }
 

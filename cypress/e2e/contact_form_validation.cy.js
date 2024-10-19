@@ -10,7 +10,7 @@ describe('Contact Page Form Validation', function () {
     })
 
 
-    it('Displays and removes error messages', function () {
+    it('Verifies error messages display appropriately', function () {
         let errorAlertText = 'We welcome your feedback - but we won\'t get it unless you complete the form correctly'
         const formDetails = this.userData.formDetails;
 
