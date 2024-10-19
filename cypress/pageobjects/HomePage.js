@@ -5,7 +5,7 @@ class HomePage{
     }
 
     startShopping(){
-        this.startShopping.click();
+        this.startShoppingButton.click();
     }
 
     goToHomePage(){
