@@ -48,3 +48,4 @@ jobs:
         with:
           name: cypress-videos-${{ github.event.inputs.browser }}
           path: cypress/videos
+          if-no-files-found: ignore
