@@ -5,7 +5,7 @@ describe('Contact Page Form Validation', function () {
 
 
     beforeEach(() => {
-        cy.setViewportToFullScreen();
+        // cy.setViewportToFullScreen();
         cy.visit('/')
     })
 

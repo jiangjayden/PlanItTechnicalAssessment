@@ -13,6 +13,8 @@ module.exports = defineConfig({
     screenshotOnRunFailure: true, // Enable screenshots on failure
     screenshotsFolder: 'cypress/screenshots',
   },
+  viewportWidth: 1920,
+  viewportHeight: 1080,
   defaultCommandTimeout: 30000,
   pageLoadTimeout: 30000,
 });
