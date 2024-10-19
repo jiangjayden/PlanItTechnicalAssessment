@@ -7,8 +7,6 @@ module.exports = defineConfig({
     },
     baseUrl: 'https://jupiter.cloud.planittesting.com/'
   },
-  chromeWebSecurity: false,
-  defaultCommandTimeout: 80000,
-  pageLoadTimeout: 80000,
-  numTestsKeptInMemory: 0,
+  defaultCommandTimeout: 30000,
+  pageLoadTimeout: 30000,
 });
