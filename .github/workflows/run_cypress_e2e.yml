@@ -11,9 +11,11 @@ on:
         default: 'chrome'
         type: choice
         options:
-          - chrome
-          - Firefox
-          - Edge
+         - chrome
+         - chromium
+         - firefox
+         - edge
+         - electron
           
 jobs:
   cypress-run:
