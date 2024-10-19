@@ -1,4 +1,4 @@
-name: Cypress end-to-end tests
+name: End-to-end tests
 run-name: End-to-end tests - running on ${{ github.event.inputs.browser || 'chrome' }}
 
 on: 
@@ -35,7 +35,7 @@ jobs:
 
       # Upload screenshots of failed tests
       - name: Upload screenshots
-      - uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: cypress-screenshots-${{ github.event.inputs.browser }}
@@ -44,7 +44,7 @@ jobs:
 
       # Upload video
       - name: Upload videos
-      - uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4
         with:
           name: cypress-videos-${{ github.event.inputs.browser }}
           path: cypress/videos
