@@ -4,7 +4,7 @@ import cartPage from '../pageobjects/CartPage'
 describe('Cart checkout validation', function () {
 
     beforeEach(() => {
-        cy.setViewportToFullScreen();
+        // cy.setViewportToFullScreen();
         cy.visit('/')
     })
 
