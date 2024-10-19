@@ -34,6 +34,7 @@ jobs:
           headed: ${{ github.event.inputs.headless }}
 
       # Upload screenshots of failed tests
+      - name: Upload screenshots
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
@@ -42,8 +43,8 @@ jobs:
           if-no-files-found: ignore 
 
       # Upload video
+      - name: Upload videos
       - uses: actions/upload-artifact@v4
         with:
           name: cypress-videos-${{ github.event.inputs.browser }}
           path: cypress/videos
-          if-no-files-found: ignore

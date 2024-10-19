@@ -16,7 +16,7 @@ describe('Cart checkout validation', function () {
 
         const stuffedFrogPrice = '$10.99'
         const fluffyBunnyPrice = '$9.99'
-        const valentineBearPrice = '$14.9'
+        const valentineBearPrice = '$14.99'
 
         const stuffedFrogSubTotal = '$21.98'
         const fluffyBunnySubTotal = '$49.95'
