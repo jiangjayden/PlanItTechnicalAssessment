@@ -16,7 +16,7 @@ This project is a Cypress automation testing framework built with JavaScript.
 
 ## Running Tests
 
-To launch Cypress and run via UI - In the terminal run `npx cypress open`
+To launch Cypress and run via UI - In the terminal run `npx cypress open`<br>
 To run all tests in e2e folder - In the terminal run `npm run test:e2e`
 
 
