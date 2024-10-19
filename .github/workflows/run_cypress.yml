@@ -1,7 +1,8 @@
 name: End-to-end tests
 run-name: End-to-end tests - running on ${{ github.event.inputs.environment || 'chrome' }}
 
-on: push
+on: 
+  push:
   workflow_dispatch:
     inputs:
       browser:
