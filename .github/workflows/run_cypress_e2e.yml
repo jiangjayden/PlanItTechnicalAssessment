@@ -1,5 +1,5 @@
 name: End-to-end tests
-run-name: End-to-end tests - running on ${{ github.event.inputs.environment || 'chrome' }}
+run-name: End-to-end tests - running on ${{ github.event.inputs.browser || 'chrome' }}
 
 on: 
   push:
@@ -16,6 +16,16 @@ on:
          - firefox
          - edge
          - electron
+      headed:
+          description: 'Run in headed mode'
+          required: false
+          default: true
+          type: choice
+          options:
+            - 'true'
+            - 'false'
+
+     
           
 jobs:
   cypress-run:
@@ -23,12 +33,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
       # Install npm dependencies, cache them correctly
       # and run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
+          config-file: cypress.config.js
           browser: ${{ github.event.inputs.browser }}
+          headed: ${{ github.event.inputs.headless }}
+
 
 
       # Upload screenshots of failed tests
