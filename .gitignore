@@ -4,10 +4,8 @@ node_modules/
 # Cypress files
 cypress/videos/
 cypress/screenshots/
-cypress/fixtures/*.json
 
 # Environment files
-.env
 .env.local
 .env.*.local
 
@@ -29,7 +27,3 @@ lcov.info
 .idea/
 .DS_Store
 *.swp
-
-# Operating system files
-Thumbs.db
-ehthumbs.db
