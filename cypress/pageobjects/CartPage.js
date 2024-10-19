@@ -4,11 +4,13 @@ class CartPage {
         cy.get('#nav-cart > a').click();
     }
 
+    get cartTotalText(){
+        return cy.get('.total').invoke('text'); // Get the text from the element
+    }
+
     cartTotal() {
-        return cy.get('.total')              // Get the total element
-            .invoke('text')                    // Extract its text
-            .then((totalText) => {
-                return totalText.replace('Total: ', '').trim();  // Remove 'Total: ' and return the numeric value
+        return this.cartTotalText.then((totalText) => {
+                return totalText.replace('Total: ', '');  // Remove 'Total: ' and return the numeric value
             });
     }
 
@@ -25,17 +27,6 @@ class CartPage {
             .find('td')
             .eq(1)
     }
-
-    calculateCartTotal(subTotals) {
-        let total = 0;
-        for (let i = 0; i < subTotals.length; i++) {
-            total += parseFloat(subTotals[i].replace('$', ''));
-        }
-
-        return total.toFixed(1);
-    }
-
-
 }
 
 module.exports = new CartPage();

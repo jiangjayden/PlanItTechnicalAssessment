@@ -4,7 +4,6 @@ import homePage from '../pageobjects/HomePage'
 describe('Contact Page Form Validation', function () {
 
     beforeEach(() => {
-        // cy.setViewportToFullScreen();
         cy.visit('/')
     })
 
